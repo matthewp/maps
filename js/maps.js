@@ -7,6 +7,8 @@
 var Map = {
 	init: function() {
 		var elem = document.getElementById('map');
+    elem.style.width = window.innerWidth + 'px';
+    elem.style.height = window.innerHeight + 'px';
 		window.map = new MQA.TileMap(elem, 7, {
 			lat: 39.743943,
 			lng: -105.020089

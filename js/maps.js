@@ -9,11 +9,19 @@ var Map = {
 		var elem = document.getElementById('map');
     elem.style.width = window.innerWidth + 'px';
     elem.style.height = window.innerHeight + 'px';
-		window.map = new MQA.TileMap(elem, 7, {
+    ['tap', 'touchstart', 'touchend', 'touchmove'].forEach(function(evt) {
+      elem.addEventListener(evt, Map);
+    });
+
+		window.map = new MQA.TileMap(elem, 9, {
 			lat: 39.743943,
 			lng: -105.020089
 		}, 'map');
-	}
+	},
+
+  handleEvent: function(e) {
+    e.preventDefault();
+  }
 };
 
 window.addEventListener('load', function loadMap(e) {

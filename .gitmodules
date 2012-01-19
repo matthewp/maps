@@ -1,0 +1,3 @@
+[submodule "libs/leaflet"]
+	path = libs/leaflet
+	url = https://matthewp@github.com/matthewp/Leaflet.git

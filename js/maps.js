@@ -9,12 +9,12 @@ function createTileLayer(maxZoom) {
 
 	const TITLE_URL = 'http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png';
 	var subdomains = [ 'otile1', 'otile2', 'otile3', 'otile4' ],
-		attribution = 'Temporary attribution.',
-		tileLayer = new L.TileLayer(TITLE_URL, {
-			maxZoom: maxZoom,
-			attribution: attribution,
-			subdomains: subdomains
-		});
+		attribution = 'Temporary attribution.';
+	return new L.TileLayer(TITLE_URL, {
+		maxZoom: maxZoom,
+		attribution: attribution,
+		subdomains: subdomains
+	});
 }
 
 var Map = {

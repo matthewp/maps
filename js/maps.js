@@ -22,14 +22,27 @@ function createTileLayer(maxZoom) {
 Map = {
   init: function() {
     var tileLayer = createTileLayer();
-    var map = new L.Map('map');
-    map.setView(new L.LatLng(51.505, -0.09), 13).addLayer(tileLayer);
+    this.map = new L.Map('map');
+    this.map.setView(new L.LatLng(51.505, -0.09), 13).addLayer(tileLayer);
 
     var marker = new L.Marker(new L.LatLng(51.5, -0.09));
-    map.addLayer(marker);
+    this.map.addLayer(marker);
+
+    this.getCurrent();
 
     this.nav = new Nav;
     this.nav.init();
+  },
+
+  getCurrent: function() {
+    navigator.geolocation.getCurrentPosition(this.move.bind(this));
+  },
+
+  move: function(position) {
+    this.map.setView(new L.LatLng(
+      position.coords.latitude,
+      position.coords.longitude
+    ), 13);
   }
 };
 
@@ -39,15 +52,11 @@ function Nav() {
 
 Nav.prototype = {
   init: function() {
-    var current = new NavBtn(document.getElementById('current'), getCurrent);
+    var current = new NavBtn(document.getElementById('current'), Map.getCurrent);
     var search = new NavBtn(document.getElementById('search'));
 
     current.listen();
     search.listen();
-  },
-
-  getCurrent: function() {
-    // TODO Move to user's GPS coordinates.
   }
 };
 
